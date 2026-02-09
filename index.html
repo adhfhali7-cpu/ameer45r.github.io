@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موقع أمير عبد الله الظبي - بوابة التسجيل</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* تصميم الصورة المتحركة */
+        .animated-image {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid #3498db;
+            box-shadow: 0 0 20px rgba(52, 152, 219, 0.4);
+            position: relative;
+            animation: floatAnimation 3s ease-in-out infinite;
+        }
+        
+        .animated-image::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, #3498db, #2c3e50, #3498db);
+            border-radius: 50%;
+            z-index: -1;
+            animation: rotateBorder 4s linear infinite;
+        }
+        
+        .animated-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .animated-image:hover img {
+            transform: scale(1.1);
+        }
+        
+        /* الأنيميشن للصورة */
+        @keyframes floatAnimation {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        @keyframes rotateBorder {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(52, 152, 219, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(52, 152, 219, 0);
+            }
+        }
+        
+        header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 25px 0;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* تأثيرات إضافية للهيدر */
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #fff, transparent);
+            animation: slide 3s linear infinite;
+        }
+        
+        @keyframes slide {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+        
+        header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            position: relative;
+            animation: fadeInDown 1s ease;
+        }
+        
+        header p {
+            font-size: 16px;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .logo {
+            font-size: 40px;
+            margin-bottom: 15px;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+        
+        .form-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            animation: slideUp 0.8s ease;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            border-color: #3498db;
+            outline: none;
+            box-shadow: 0 0 8px rgba(52, 152, 219, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .required {
+            color: #e74c3c;
+            animation: pulse 2s infinite;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            font-size: 18px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn:hover {
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn:active {
+            transform: translateY(-1px);
+        }
+        
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn:hover::after {
+            left: 100%;
+        }
+        
+        .form-section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            transition: all 0.3s;
+        }
+        
+        .form-section:hover {
+            border-bottom-color: #3498db;
+        }
+        
+        .form-section h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 22px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+            position: relative;
+        }
+        
+        .form-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            right: 0;
+            width: 50px;
+            height: 2px;
+            background: #e74c3c;
+            animation: expandWidth 2s infinite alternate;
+        }
+        
+        @keyframes expandWidth {
+            from {
+                width: 50px;
+            }
+            to {
+                width: 150px;
+            }
+        }
+        
+        .radio-group {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .radio-option {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        
+        .radio-option:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .radio-option input {
+            width: auto;
+            margin-left: 8px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #777;
+            font-size: 14px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            animation: fadeIn 1s ease 0.5s both;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 15px;
+            background: white;
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+        
+        .contact-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .form-container {
+                padding: 20px;
+            }
+            
+            .radio-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            header h1 {
+                font-size: 24px;
+            }
+            
+            .animated-image {
+                width: 120px;
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <!-- الصورة المتحركة -->
+            <div class="animated-image">
+                <!-- يمكنك استبدال الرابط بصورة شخصية -->
+                <img src="1766152800561.jpg" alt="صورة أمير عبد الله الظبي">
+            </div>
+            
+            <div class="logo">📝</div>
+            <h1>موقع أمير عبد الله الظبي</h1>
+            <p>بوابة التسجيل الإلكتروني للخدمات والاستشارات</p>
+        </header>
+        
+        <div class="form-container">
+            <form id="registrationForm">
+                <div class="form-section">
+                    <h2>المعلومات الشخصية</h2>
+                    
+                    <div class="form-group">
+                        <label for="fullName">الاسم الكامل <span class="required">*</span></label>
+                        <input type="text" id="fullName" name="fullName" required placeholder="أدخل اسمك الكامل">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="nationalId">رقم الهوية <span class="required">*</span></label>
+                        <input type="text" id="nationalId" name="nationalId" required placeholder="أدخل رقم الهوية">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="birthDate">تاريخ الميلاد <span class="required">*</span></label>
+                        <input type="date" id="birthDate" name="birthDate" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="gender">الجنس <span class="required">*</span></label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="male" name="gender" value="male" required>
+                                <label for="male">ذكر</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="female" name="gender" value="female">
+                                <label for="female">أنثى</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h2>معلومات الاتصال</h2>
+                    
+                    <div class="form-group">
+                        <label for="phone">رقم الهاتف <span class="required">*</span></label>
+                        <input type="tel" id="phone" name="phone" required placeholder="أدخل رقم الهاتف">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">البريد الإلكتروني</label>
+                        <input type="email" id="email" name="email" placeholder="أدخل البريد الإلكتروني">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="address">العنوان <span class="required">*</span></label>
+                        <textarea id="address" name="address" rows="3" required placeholder="أدخل العنوان بالتفصيل"></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h2>نوع الخدمة المطلوبة</h2>
+                    
+                    <div class="form-group">
+                        <label for="serviceType">نوع الخدمة <span class="required">*</span></label>
+                        <select id="serviceType" name="serviceType" required>
+                            <option value="">اختر نوع الخدمة</option>
+                            <option value="consultation">استشارة</option>
+                            <option value="registration">تسجيل</option>
+                            <option value="support">دعم فني</option>
+                            <option value="other">خدمة أخرى</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="serviceDetails">تفاصيل الخدمة المطلوبة <span class="required">*</span></label>
+                        <textarea id="serviceDetails" name="serviceDetails" rows="4" required placeholder="صف الخدمة التي تحتاجها بالتفصيل"></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h2>مرفقات (اختياري)</h2>
+                    
+                    <div class="form-group">
+                        <label for="idCopy">صورة الهوية</label>
+                        <input type="file" id="idCopy" name="idCopy" accept="image/*">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="documents">مستندات إضافية</label>
+                        <input type="file" id="documents" name="documents" accept="image/*,.pdf,.doc,.docx">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <button type="submit" class="btn">إرسال طلب التسجيل</button>
+                </div>
+            </form>
+        </div>
+        
+        <footer>
+            <p>موقع أمير عبد الله الظبي &copy; 2025 - جميع الحقوق محفوظة</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span>📧</span>
+                    <span>amir@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <span>📞</span>
+                    <span>774269652</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const fullName = document.getElementById('fullName').value;
+            const phone = document.getElementById('phone').value;
+            
+            if (fullName && phone) {
+                // تأثير عند الإرسال الناجح
+                const btn = document.querySelector('.btn');
+                btn.innerHTML = '✓ تم الإرسال بنجاح';
+                btn.style.background = 'linear-gradient(135deg, #27ae60, #2ecc71)';
+                
+                setTimeout(() => {
+                    alert('تم استلام طلبك بنجاح. سنتواصل معك قريباً على الرقم ' + phone);
+                    document.getElementById('registrationForm').reset();
+                    btn.innerHTML = 'إرسال طلب التسجيل';
+                    btn.style.background = 'linear-gradient(135deg, #2c3e50, #3498db)';
+                }, 1000);
+            } else {
+                // تأثير عند وجود خطأ
+                const requiredFields = document.querySelectorAll('.required');
+                requiredFields.forEach(field => {
+                    field.parentElement.style.animation = 'shake 0.5s';
+                    setTimeout(() => {
+                        field.parentElement.style.animation = '';
+                    }, 500);
+                });
+                alert('يرجى ملء جميع الحقول الإلزامية');
+            }
+        });
+        
+        const inputs = document.querySelectorAll('input, textarea, select');
+        inputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                this.style.backgroundColor = '#f9f9f9';
+                this.parentElement.style.transform = 'translateY(-5px)';
+            });
+            
+            input.addEventListener('blur', function() {
+                this.style.backgroundColor = '';
+                this.parentElement.style.transform = 'translateY(0)';
+            });
+        });
+        
+        // إضافة تأثير اهتزاز
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+                20%, 40%, 60%, 80% { transform: translateX(5px); }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // تأثيرات للصور عند التحميل
+        window.addEventListener('load', function() {
+            const image = document.querySelector('.animated-image');
+            image.style.animation = 'floatAnimation 3s ease-in-out infinite, pulse 2s infinite';
+        });
+    </script>
+</body>
+</html>
